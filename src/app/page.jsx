@@ -42,7 +42,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold text-green-700">{onTrack}</h2>
           <p className="text-gray-500 mt-1">On Track</p>
         </div>
-
+            {/* Need Attention */}
         <div className="border-gray-400 bg-white p-6 rounded-xl py-8 text-center shadow-sm">
           <h2 className="text-3xl font-bold text-green-700">{needAttention}</h2>
           <p className="text-gray-500 mt-1">Need Attention</p>
