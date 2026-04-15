@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Banner from "./components/Banner";
+
 import FriendCard from "./components/FriendCard";
+import Banner from './components/Banner';
+
 
 export default function HomePage() {
   const [friends, setFriends] = useState([]);
@@ -27,6 +29,7 @@ export default function HomePage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
+      {/* Banner */}
       <Banner />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 ">
