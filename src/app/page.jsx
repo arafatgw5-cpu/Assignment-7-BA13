@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Banner from "./components/Banner";
-// নিচে ছোট হাতের 'c' দিয়ে components ফোল্ডার ইম্পোর্ট করা হয়েছে
 import FriendCard from "./components/FriendCard";
 
 export default function HomePage() {
