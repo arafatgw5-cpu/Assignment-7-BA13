@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Banner from "./components/Banner";
-// import FriendCard from "./components/FriendCard";
-import FriendCard from './Components/FriendCard';
+// নিচে ছোট হাতের 'c' দিয়ে components ফোল্ডার ইম্পোর্ট করা হয়েছে
+import FriendCard from "./components/FriendCard";
 
 export default function HomePage() {
   const [friends, setFriends] = useState([]);
@@ -31,22 +31,22 @@ export default function HomePage() {
       <Banner />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 ">
-        <div className="border-gray-400 bg-white p-6  rounded-xl py-8 text-center shadow-sm">
+        <div className="border-gray-400 bg-white p-6 rounded-xl py-8 text-center shadow-sm">
           <h2 className="text-3xl font-bold text-green-700">{totalFriends}</h2>
           <p className="text-gray-500 mt-1">Total Friends</p>
         </div>
 
-        <div className="border-gray-400 bg-white p-6  rounded-xl py-8 text-center shadow-sm">
+        <div className="border-gray-400 bg-white p-6 rounded-xl py-8 text-center shadow-sm">
           <h2 className="text-3xl font-bold text-green-700">{onTrack}</h2>
           <p className="text-gray-500 mt-1">On Track</p>
         </div>
 
-        <div className="border-gray-400 bg-white p-6  rounded-xl py-8 text-center shadow-sm">
+        <div className="border-gray-400 bg-white p-6 rounded-xl py-8 text-center shadow-sm">
           <h2 className="text-3xl font-bold text-green-700">{needAttention}</h2>
           <p className="text-gray-500 mt-1">Need Attention</p>
         </div>
 
-        <div className="border-gray-400 bg-white p-6  rounded-xl py-8 text-center shadow-sm">
+        <div className="border-gray-400 bg-white p-6 rounded-xl py-8 text-center shadow-sm">
           <h2 className="text-3xl font-bold text-green-700">{interactions}</h2>
           <p className="text-gray-500 mt-1">Interactions This Month</p>
         </div>
