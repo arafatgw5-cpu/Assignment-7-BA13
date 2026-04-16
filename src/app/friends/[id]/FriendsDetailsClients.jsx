@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import {
+  ToastContainer,
+  toast,
+} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   BellRing,
   Archive,
@@ -25,11 +30,15 @@ const statusText = {
   "on-track": "On Track",
 };
 
-const cardStyle = "rounded-2xl border border-gray-200 bg-white p-6 shadow-sm";
+const cardStyle =
+  "rounded-2xl border border-gray-200 bg-white p-6 shadow-sm";
+
 const actionBtn =
   "flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white py-3 text-gray-700 hover:bg-gray-50";
+
 const quickBtn =
   "flex flex-col items-center gap-3 rounded-xl border border-gray-200 bg-white py-8 hover:bg-gray-50";
+
 const smallBtn =
   "flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50";
 
@@ -37,10 +46,13 @@ export default function FriendDetailsClient({ friend }) {
   const [timeline, setTimeline] = useState([]);
 
   useEffect(() => {
-    const savedTimeline = JSON.parse(localStorage.getItem("timeline")) || [];
+    const savedTimeline =
+      JSON.parse(localStorage.getItem("timeline")) || [];
+
     const myTimeline = savedTimeline.filter(
-      (item) => item.friendId === friend.id,
+      (item) => item.friendId === friend.id
     );
+
     setTimeline(myTimeline);
   }, [friend.id]);
 
@@ -58,19 +70,36 @@ export default function FriendDetailsClient({ friend }) {
       }),
     };
 
-    const savedTimeline = JSON.parse(localStorage.getItem("timeline")) || [];
+    const savedTimeline =
+      JSON.parse(localStorage.getItem("timeline")) || [];
+
     const updatedTimeline = [newItem, ...savedTimeline];
 
-    localStorage.setItem("timeline", JSON.stringify(updatedTimeline));
-    setTimeline(updatedTimeline.filter((item) => item.friendId === friend.id));
+    localStorage.setItem(
+      "timeline",
+      JSON.stringify(updatedTimeline)
+    );
 
-    toast.success(`${type} added`);
+    setTimeline(
+      updatedTimeline.filter(
+        (item) => item.friendId === friend.id
+      )
+    );
+
+    toast.success(`${type} added 🎉`);
   };
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10">
+      {/* Toast */}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        theme="light"
+      />
+
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        {/* Left Side */}
+        {/* Left */}
         <div className="space-y-4">
           <div className={`${cardStyle} text-center`}>
             <img
@@ -92,9 +121,9 @@ export default function FriendDetailsClient({ friend }) {
             </span>
 
             <div className="mt-4 flex flex-wrap justify-center gap-2">
-              {friend.tags?.map((tag, index) => (
+              {friend.tags?.map((tag, i) => (
                 <span
-                  key={index}
+                  key={i}
                   className="rounded-full border border-gray-200 px-3 py-1 text-xs text-green-700"
                 >
                   {tag}
@@ -102,8 +131,13 @@ export default function FriendDetailsClient({ friend }) {
               ))}
             </div>
 
-            <p className="mt-4 text-sm italic text-gray-500">{friend.bio}</p>
-            <p className="mt-2 text-sm text-gray-500">{friend.email}</p>
+            <p className="mt-4 text-sm italic text-gray-500">
+              {friend.bio}
+            </p>
+
+            <p className="mt-2 text-sm text-gray-500">
+              {friend.email}
+            </p>
           </div>
 
           <button className={actionBtn}>
@@ -122,43 +156,57 @@ export default function FriendDetailsClient({ friend }) {
           </button>
         </div>
 
-        {/* Right Side */}
+        {/* Right */}
         <div className="space-y-6 lg:col-span-2">
+          {/* Stats */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div className={`${cardStyle} text-center`}>
               <h3 className="text-3xl font-bold text-green-900">
                 {friend.days_since_contact}
               </h3>
-              <p className="mt-2 text-gray-500">Days Since Contact</p>
+              <p className="mt-2 text-gray-500">
+                Days Since Contact
+              </p>
             </div>
 
             <div className={`${cardStyle} text-center`}>
               <h3 className="text-3xl font-bold text-green-900">
                 {friend.goal}
               </h3>
-              <p className="mt-2 text-gray-500">Goal (Days)</p>
+              <p className="mt-2 text-gray-500">
+                Goal (Days)
+              </p>
             </div>
 
             <div className={`${cardStyle} text-center`}>
               <h3 className="text-xl font-bold text-green-900">
-                {new Date(friend.next_due_date).toLocaleDateString("en-US", {
+                {new Date(
+                  friend.next_due_date
+                ).toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",
                   year: "numeric",
                 })}
               </h3>
-              <p className="mt-2 text-gray-500">Next Due</p>
+              <p className="mt-2 text-gray-500">
+                Next Due
+              </p>
             </div>
           </div>
 
-          <div className={`${cardStyle} flex items-start justify-between`}>
+          {/* Goal */}
+          <div
+            className={`${cardStyle} flex items-start justify-between`}
+          >
             <div>
               <h3 className="text-2xl font-semibold text-green-900">
                 Relationship Goal
               </h3>
               <p className="mt-3 text-gray-600">
                 Connect every{" "}
-                <span className="font-bold">{friend.goal} days</span>
+                <span className="font-bold">
+                  {friend.goal} days
+                </span>
               </p>
             </div>
 
@@ -168,6 +216,7 @@ export default function FriendDetailsClient({ friend }) {
             </button>
           </div>
 
+          {/* Quick Check-In */}
           <div className={cardStyle}>
             <h3 className="mb-5 text-2xl font-semibold text-green-900">
               Quick Check-In
@@ -200,6 +249,7 @@ export default function FriendDetailsClient({ friend }) {
             </div>
           </div>
 
+          {/* Timeline */}
           <div className={cardStyle}>
             <div className="mb-5 flex items-center justify-between">
               <h3 className="text-2xl font-semibold text-green-900">
@@ -227,10 +277,14 @@ export default function FriendDetailsClient({ friend }) {
                       <h4 className="font-medium text-gray-900">
                         {item.title}
                       </h4>
-                      <p className="text-sm text-gray-500">{item.type}</p>
+                      <p className="text-sm text-gray-500">
+                        {item.type}
+                      </p>
                     </div>
 
-                    <p className="text-sm text-gray-400">{item.date}</p>
+                    <p className="text-sm text-gray-400">
+                      {item.date}
+                    </p>
                   </div>
                 ))}
               </div>
