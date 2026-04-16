@@ -31,8 +31,5 @@ Visualize your communication data with beautiful charts using Recharts.
 ##  Live Link
  https://assignment-7-ba-13.vercel.app/
 
-## 💻 GitHub Repository
-👉 https://github.com/arafatgw5-cpu/Assignment-7-BA13
-
 ---
 
