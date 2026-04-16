@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 const getStatusStyle = (status) => {
-  if (status === "overdue") return "bg-red-100 text-red-600";
-  if (status === "almost due") return "bg-yellow-100 text-yellow-700";
+  if (status === "overdue") return "bg-red-400 text-white";
+  if (status === "almost due") return "bg-yellow-300 text-yellow-700";
   return "bg-green-100 text-green-700";
 };
 

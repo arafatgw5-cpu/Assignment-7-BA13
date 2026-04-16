@@ -8,7 +8,7 @@ import React from "react";
 const Nabvar = () => {
   const pathName = usePathname();
   return (
-    <header className="sticky top-0 z-10 bg-white border-b">
+    <header className="sticky top-0 z-10 border border-gray-200 bg-white">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4">
         <div className="text-2xl font-bold text-gray-700">
           Keen <span className="text-green-800">Keeper</span>
