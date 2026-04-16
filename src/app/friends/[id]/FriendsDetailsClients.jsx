@@ -25,6 +25,14 @@ const statusText = {
   "on-track": "On Track",
 };
 
+const cardStyle = "rounded-2xl border border-gray-200 bg-white p-6 shadow-sm";
+const actionBtn =
+  "flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white py-3 text-gray-700 hover:bg-gray-50";
+const quickBtn =
+  "flex flex-col items-center gap-3 rounded-xl border border-gray-200 bg-white py-8 hover:bg-gray-50";
+const smallBtn =
+  "flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-gray-700 hover:bg-gray-50";
+
 export default function FriendDetailsClient({ friend }) {
   const [timeline, setTimeline] = useState([]);
 
@@ -64,14 +72,16 @@ export default function FriendDetailsClient({ friend }) {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Left Side */}
         <div className="space-y-4">
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm">
+          <div className={`${cardStyle} text-center`}>
             <img
               src={friend.picture}
               alt={friend.name}
               className="mx-auto h-20 w-20 rounded-full object-cover"
             />
 
-            <h2 className="mt-4 text-2xl font-bold">{friend.name}</h2>
+            <h2 className="mt-4 text-2xl font-bold text-gray-900">
+              {friend.name}
+            </h2>
 
             <span
               className={`mt-3 inline-block rounded-full px-3 py-1 text-xs font-semibold ${
@@ -85,7 +95,7 @@ export default function FriendDetailsClient({ friend }) {
               {friend.tags?.map((tag, index) => (
                 <span
                   key={index}
-                  className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs text-green-700 "
+                  className="rounded-full border border-gray-200 px-3 py-1 text-xs text-green-700"
                 >
                   {tag}
                 </span>
@@ -96,17 +106,17 @@ export default function FriendDetailsClient({ friend }) {
             <p className="mt-2 text-sm text-gray-500">{friend.email}</p>
           </div>
 
-          <button className="flex w-full items-center justify-center gap-2 rounded-xl border bg-white py-3 text-gray-700 hover:bg-gray-50 border border-gray-200 bg-white  p-3 rounded-sm">
+          <button className={actionBtn}>
             <BellRing size={18} />
             Snooze 2 Weeks
           </button>
 
-          <button className="flex w-full items-center justify-center gap-2 rounded-xl border bg-white py-3 text-gray-700 hover:bg-gray-50 border border-gray-200 bg-white  p-3 rounded-sm">
+          <button className={actionBtn}>
             <Archive size={18} />
             Archive
           </button>
 
-          <button className="flex w-full items-center justify-center gap-2 rounded-xl border bg-white py-3 text-red-500 hover:bg-red-50 border border-gray-200 bg-white  p-3 rounded-sm">
+          <button className="flex w-full items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white py-3 text-red-500 hover:bg-red-50">
             <Trash2 size={18} />
             Delete
           </button>
@@ -115,21 +125,21 @@ export default function FriendDetailsClient({ friend }) {
         {/* Right Side */}
         <div className="space-y-6 lg:col-span-2">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl  border border-gray-200 bg-white p-6 text-center shadow-sm">
+            <div className={`${cardStyle} text-center`}>
               <h3 className="text-3xl font-bold text-green-900">
                 {friend.days_since_contact}
               </h3>
               <p className="mt-2 text-gray-500">Days Since Contact</p>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm">
+            <div className={`${cardStyle} text-center`}>
               <h3 className="text-3xl font-bold text-green-900">
                 {friend.goal}
               </h3>
               <p className="mt-2 text-gray-500">Goal (Days)</p>
             </div>
 
-            <div className="rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm">
+            <div className={`${cardStyle} text-center`}>
               <h3 className="text-xl font-bold text-green-900">
                 {new Date(friend.next_due_date).toLocaleDateString("en-US", {
                   month: "short",
@@ -141,7 +151,7 @@ export default function FriendDetailsClient({ friend }) {
             </div>
           </div>
 
-          <div className="flex items-start justify-between rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className={`${cardStyle} flex items-start justify-between`}>
             <div>
               <h3 className="text-2xl font-semibold text-green-900">
                 Relationship Goal
@@ -152,13 +162,13 @@ export default function FriendDetailsClient({ friend }) {
               </p>
             </div>
 
-            <button className="flex items-center gap-2 rounded-lg border px-4 py-2 text-gray-700 hover:bg-gray-50 border border-gray-200 bg-white  p-3 rounded-sm">
+            <button className={smallBtn}>
               <Pencil size={16} />
               Edit
             </button>
           </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className={cardStyle}>
             <h3 className="mb-5 text-2xl font-semibold text-green-900">
               Quick Check-In
             </h3>
@@ -166,7 +176,7 @@ export default function FriendDetailsClient({ friend }) {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               <button
                 onClick={() => handleCheckIn("Call")}
-                className="flex flex-col items-center gap-3 rounded-xl border py-8 hover:bg-gray-50 border border-gray-200 bg-white  p-3 rounded-sm"
+                className={quickBtn}
               >
                 <Phone size={30} />
                 <span>Call</span>
@@ -174,7 +184,7 @@ export default function FriendDetailsClient({ friend }) {
 
               <button
                 onClick={() => handleCheckIn("Text")}
-                className="flex flex-col items-center gap-3 rounded-xl border py-8 hover:bg-gray-50 border border-gray-200 bg-white  p-3 rounded-sm"
+                className={quickBtn}
               >
                 <MessageSquare size={30} />
                 <span>Text</span>
@@ -182,7 +192,7 @@ export default function FriendDetailsClient({ friend }) {
 
               <button
                 onClick={() => handleCheckIn("Video")}
-                className="flex flex-col items-center gap-3 rounded-xl border py-8 hover:bg-gray-50 border border-gray-200 bg-white  p-3 rounded-sm"
+                className={quickBtn}
               >
                 <Video size={30} />
                 <span>Video</span>
@@ -190,20 +200,20 @@ export default function FriendDetailsClient({ friend }) {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className={cardStyle}>
             <div className="mb-5 flex items-center justify-between">
               <h3 className="text-2xl font-semibold text-green-900">
                 Recent Interactions
               </h3>
 
-              <button className="flex items-center gap-2 rounded-lg border px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 border border-gray-200 bg-white  p-3 rounded-sm">
+              <button className={smallBtn}>
                 <History size={16} />
                 Full History
               </button>
             </div>
 
             {timeline.length === 0 ? (
-              <p className="py-6 text-center text-gray-500 border border-gray-200 bg-white  p-3 rounded-sm">
+              <p className="rounded-xl border border-gray-200 py-6 text-center text-gray-500">
                 No interactions yet.
               </p>
             ) : (
@@ -211,10 +221,10 @@ export default function FriendDetailsClient({ friend }) {
                 {timeline.map((item) => (
                   <div
                     key={item.id}
-                    className="flex items-center justify-between border border-gray-200 bg-white  p-3 rounded-sm"
+                    className="flex items-center justify-between rounded-xl border border-gray-200 p-3"
                   >
                     <div>
-                      <h4 className="font-medium text-gray-900 ">
+                      <h4 className="font-medium text-gray-900">
                         {item.title}
                       </h4>
                       <p className="text-sm text-gray-500">{item.type}</p>
